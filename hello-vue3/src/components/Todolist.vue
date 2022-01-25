@@ -1,5 +1,9 @@
 <template>
 	<div>
+		<button @click="toggle">开启全屏</button>
+		<p ref="el">
+			这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容这里是全屏内容
+		</p>
 		<h1 @click="add">{{ count }}</h1>
 		<input type="text" v-model="title" @keydown.enter="addTodo" />
 		<button v-if="active < all" @click="clear">清空</button>
@@ -19,6 +23,9 @@
 <script setup>
 	import { useStorage } from '../utils/storage.js';
 	import { ref, computed, reactive, watchEffect } from 'vue';
+	import { useFullscreen } from '@vueuse/core';
+	const el = ref(null);
+	const { toggle, isFullscreen } = useFullscreen(el);
 	// 累加
 	let count = ref(1);
 	let color = ref(1);
@@ -78,8 +85,8 @@
 <style scoped>
 	/* 在scoped中使用:global来设置全局css */
 	/* :global(h1) {
-				    color: red;
-				  } */
+										    color: red;
+										  } */
 	h1 {
 		color: v-bind(color);
 	}
