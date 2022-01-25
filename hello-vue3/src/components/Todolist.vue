@@ -20,8 +20,10 @@
 	import { ref, computed } from 'vue';
 	// 累加
 	let count = ref(1);
+	let color = ref(1);
 	function add() {
 		count.value++;
+		color.value = Math.random() > 0.5 ? 'red' : 'blue';
 	}
 	let { title, todos, addTodo, clear, active, all, allDone } = useTodos();
 	// todo
@@ -62,9 +64,13 @@
 		return { title, todos, addTodo, clear, active, all, allDone };
 	}
 </script>
-<style>
+<style scoped>
+	/* 在scoped中使用:global来设置全局css */
+	/* :global(h1) {
+							color: red;
+						} */
 	h1 {
-		color: red;
+		color: v-bind(color);
 	}
 	.done {
 		color: grey;
