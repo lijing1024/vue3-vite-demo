@@ -10,8 +10,8 @@
 	<div>
 		<router-link to="/">首页</router-link> |
 		<router-link to="/about">关于</router-link>
+		<router-view></router-view>
 	</div>
-	<router-view></router-view>
 </template>
 
 <style>
@@ -19,8 +19,9 @@
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
+		/* text-align: center; */
 		color: #2c3e50;
 		margin-top: 60px;
+		margin-left: 300px;
 	}
 </style>
