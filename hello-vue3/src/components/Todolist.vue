@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-	import { ref, computed } from 'vue';
+	import { ref, computed, reactive, watchEffect } from 'vue';
 	// 累加
 	let count = ref(1);
 	let color = ref(1);
@@ -63,12 +63,22 @@
 		});
 		return { title, todos, addTodo, clear, active, all, allDone };
 	}
+	// 使用reactive
+	let obj = reactive({
+		count: 1,
+	});
+	let double = computed(() => obj.count * 2);
+	obj.count = 2;
+
+	watchEffect(() => {
+		console.log('数据被修改了', obj.count, double.value);
+	});
 </script>
 <style scoped>
 	/* 在scoped中使用:global来设置全局css */
 	/* :global(h1) {
-							color: red;
-						} */
+		      color: red;
+		    } */
 	h1 {
 		color: v-bind(color);
 	}

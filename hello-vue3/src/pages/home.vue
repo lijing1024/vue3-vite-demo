@@ -6,9 +6,9 @@
 </template>
 <script setup>
 	import Todolist from '../components/Todolist.vue';
-	import { useMouse } from '../utils/mouse.js';
-	let { x, y } = useMouse();
-	console.log(x.value, y.value);
+	// import { useMouse } from '../utils/mouse.js';
+	// let { x, y } = useMouse();
+	// console.log(x.value, y.value);
 </script>
 <style>
 </style>
