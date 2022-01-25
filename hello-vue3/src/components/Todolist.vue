@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+	import { useStorage } from '../utils/storage.js';
 	import { ref, computed, reactive, watchEffect } from 'vue';
 	// 累加
 	let count = ref(1);
@@ -29,17 +30,17 @@
 	// todo
 	function useTodos() {
 		let title = ref('');
-		let todos = ref([
-			{
-				title: '学习vue3',
-				done: true,
-			},
-		]);
+		// let todos = ref(JSON.parse(localStorage.getItem('todos') || '[]'));
+		// watchEffect(() => {
+		// 	localStorage.setItem('todos', JSON.stringify(todos.value));
+		// });
+		let todos = useStorage('todos');
 		function addTodo() {
 			todos.value.push({
 				title: title.value,
 				done: false,
 			});
+			title.value = '';
 		}
 		function clear() {
 			todos.value = todos.value.filter((v) => !v.done);
@@ -77,8 +78,8 @@
 <style scoped>
 	/* 在scoped中使用:global来设置全局css */
 	/* :global(h1) {
-		      color: red;
-		    } */
+				    color: red;
+				  } */
 	h1 {
 		color: v-bind(color);
 	}
