@@ -1,6 +1,8 @@
 <template>
 	<div :style="fontstyle">
 		<!-- {{ rate }} -->
+		<!-- 使用插槽 -->
+		<slot></slot>
 		<div class="rate" @mouseout="mouseOut">
 			<span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num"
 				>☆</span
