@@ -85,8 +85,8 @@
 <style scoped>
 	/* 在scoped中使用:global来设置全局css */
 	/* :global(h1) {
-										    color: red;
-										  } */
+	      color: red;
+	    } */
 	h1 {
 		color: v-bind(color);
 	}
