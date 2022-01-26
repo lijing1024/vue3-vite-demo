@@ -1,17 +1,27 @@
 <template>
 	<div :style="fontstyle">
-		{{ rate }}
+		<!-- {{ rate }} -->
+		<div class="rate" @mouseout="mouseOut">
+			<span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num"
+				>☆</span
+			>
+			<span :style="fontwidth" class="hollow">
+				<span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num"
+					>★</span
+				>
+			</span>
+		</div>
 	</div>
 </template>
 <script setup>
-	import { defineProps, computed } from 'vue';
+	import { ref, defineProps, computed, defineEmits } from 'vue';
 	let prop = defineProps({
 		value: Number,
 		theme: { type: String, default: 'orange' },
 	});
-	let rate = computed(() => {
-		return '★★★★★☆☆☆☆☆'.slice(5 - prop.value, 10 - prop.value);
-	});
+	// let rate = computed(() => {
+	// 	return '★★★★★☆☆☆☆☆'.slice(5 - prop.value, 10 - prop.value);
+	// });
 	const themeObj = {
 		black: '#00',
 		white: '#fff',
@@ -24,7 +34,38 @@
 	let fontstyle = computed(() => {
 		return `color:  ${themeObj[prop.theme]}`;
 	});
+	// 修改评分
+	let width = ref(prop.value);
+	function mouseOver(i) {
+		width.value = i;
+	}
+	function mouseOut() {
+		width.value = prop.value;
+	}
+	const fontwidth = computed(() => `width:${width.value}em;`);
+	// 通知父组件
+	let emits = defineEmits(['update-rate']);
+	function onRate(num) {
+		emits('update-rate', num);
+	}
 </script>
+<style scoped>
+	.rate {
+		position: relative;
+		display: inline-block;
+	}
+	.rate > span {
+		cursor: pointer;
+	}
+	.rate > span.hollow {
+		position: absolute;
+		display: inline-block;
+		top: 0;
+		left: 0;
+		width: 0;
+		overflow: hidden;
+	}
+</style>
 
 
 
