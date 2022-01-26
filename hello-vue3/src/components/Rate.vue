@@ -16,11 +16,11 @@
 <script setup>
 	import { ref, defineProps, computed, defineEmits } from 'vue';
 	let prop = defineProps({
-		value: Number,
+		modelValue: Number,
 		theme: { type: String, default: 'orange' },
 	});
 	// let rate = computed(() => {
-	// 	return '★★★★★☆☆☆☆☆'.slice(5 - prop.value, 10 - prop.value);
+	// 	return '★★★★★☆☆☆☆☆'.slice(5 - prop.modelValue, 10 - prop.modelValue);
 	// });
 	const themeObj = {
 		black: '#00',
@@ -35,18 +35,18 @@
 		return `color:  ${themeObj[prop.theme]}`;
 	});
 	// 修改评分
-	let width = ref(prop.value);
+	let width = ref(prop.modelValue);
 	function mouseOver(i) {
 		width.value = i;
 	}
 	function mouseOut() {
-		width.value = prop.value;
+		width.value = prop.modelValue;
 	}
 	const fontwidth = computed(() => `width:${width.value}em;`);
 	// 通知父组件
-	let emits = defineEmits(['update-rate']);
+	let emits = defineEmits(['update:modelValue']);
 	function onRate(num) {
-		emits('update-rate', num);
+		emits('update:modelValue', num);
 	}
 </script>
 <style scoped>

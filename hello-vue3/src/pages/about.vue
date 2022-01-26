@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<h1>这是关于页面</h1>
-		<Rate :value="score" @update-rate="update"></Rate>
-		<Rate :value="score" theme="green" @update-rate="update"></Rate>
-		<Rate :value="score" theme="yellow" @update-rate="update"></Rate>
+		<Rate v-model="score" @update-rate="update"></Rate>
+		<Rate v-model="score" theme="green" @update="update"></Rate>
+		<Rate v-model="score" theme="yellow" @update="update"></Rate>
 	</div>
 </template>
 
