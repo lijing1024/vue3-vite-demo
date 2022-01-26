@@ -2,6 +2,8 @@
 	<div>
 		<h1>这是关于页面</h1>
 		<Rate :value="score"></Rate>
+		<Rate :value="score" theme="green"></Rate>
+		<Rate :value="score" theme="yellow"></Rate>
 	</div>
 </template>
 
