@@ -5,18 +5,21 @@
 		<transition name="fade">
 			<h1 v-if="showTitle">这里是标题</h1>
 		</transition>
-		<div @click="add">
-			{{ count }}
-		</div>
+		<div @click="add">{{ count }}* 2 = {{ double }}</div>
+		<button @click="asyncAdd">async add</button>
 	</div>
 </template>
 
 <script setup>
 	import { computed, ref } from 'vue';
-	import { useStore } from '../store/gvuex.js';
+	import { useStore } from 'vuex';
 
 	let store = useStore();
 	let count = computed(() => store.state.count);
+	let double = computed(() => store.getters.double);
+	function asyncAdd() {
+		store.dispatch('asyncAdd');
+	}
 	function add() {
 		store.commit('add');
 	}
