@@ -7,12 +7,18 @@
 		</transition>
 		<div @click="add">{{ count }}* 2 = {{ double }}</div>
 		<button @click="asyncAdd">async add</button>
+		<br />
+		<br />
+		<br />
+
+		<Todo></Todo>
 	</div>
 </template>
 
 <script setup>
 	import { computed, ref } from 'vue';
 	import { useStore } from 'vuex';
+	import Todo from '../components/Todo.jsx';
 
 	let store = useStore();
 	let count = computed(() => store.state.count);

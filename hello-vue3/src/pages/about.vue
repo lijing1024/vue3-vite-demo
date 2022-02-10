@@ -14,7 +14,6 @@
 <script setup>
 	import Rate from '../components/Rate.vue';
 	import Heading from '../components/Heading.jsx';
-	console.log(Heading);
 	import { ref } from 'vue';
 	let score = ref(3.5);
 	function update(num) {
