@@ -41,6 +41,9 @@
 				<div>
 					<router-link to="/test">Test</router-link>
 				</div>
+				<div>
+					<router-link to="/chart">Echarts</router-link>
+				</div>
 			</el-aside>
 			<el-container>
 				<el-main>

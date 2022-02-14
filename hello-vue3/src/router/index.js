@@ -10,6 +10,7 @@ import 'nprogress/nprogress.css';
 import Home from '../pages/home.vue';
 import About from '../pages/about.vue';
 import Test from '../pages/test.vue';
+import Chart from '../components/Echarts.vue';
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: Test,
+  },
+  {
+    path: '/chart',
+    name: 'Chart',
+    component: Chart,
   },
 ];
 
