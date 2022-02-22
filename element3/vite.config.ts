@@ -17,5 +17,8 @@ export default defineConfig({
         additionalData: '@import "@/styles/variable.scss";@import "@/styles/mixin.scss";'
       }
     }
+  },
+  server: {
+    host: '0.0.0.0'
   }
 })
