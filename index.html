@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="counter">Counter：{{counter}}</div>
+  <div id="bind-attribute">
+    <span v-bind:title="message">
+      鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+  </div>
+  <div class="img">
+    <img src="./assets/image003.jpg" alt="">
+  </div>
+  <script>
+    const Counter = {
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      mounted() {
+        setInterval(() => {
+          this.counter++;
+        }, 1000)
+      }
+    }
+
+
+    Vue.createApp(Counter).mount('#counter')
+
+    const AttributeBinding = {
+      data() {
+        return {
+          message: 'You loaded this page on ' + new Date().toLocaleString()
+        }
+      }
+    }
+
+    Vue.createApp(AttributeBinding).mount('#bind-attribute')
+
+  </script>
+  <script>
+    function timeout(ms) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms, 'done')
+      })
+    }
+    timeout(1000).then((value) => {
+      console.log(value)
+    })
+    let promise = new Promise((resolve, reject) => {
+      console.log('Promise');
+      resolve()
+    })
+    promise.then(function () {
+      console.log('resolved')
+    })
+    console.log('hi')
+
+    // 使用promise加载图片
+    function loadImageAsync(url) {
+      return new Promise(function (resolve, reject) {
+        var image = new Image();
+        image.onload = function () {
+          resolve(image)
+        }
+        image.onerror = function () {
+          reject(new Error('图片加载失败' + url))
+        }
+        image.src = url;
+      })
+    }
+    // promise作为参数
+    var p1 = new Promise(function (resolve, reject) {
+      setTimeout(() => {
+        console.log('p1', p1)
+        reject(new Error('failed'))
+      }, 3000)
+    })
+    var p2 = new Promise(function (resolve, reject) {
+      setTimeout(() => {
+        console.log('p2', p2)
+        resolve(p1)
+      }, 1000)
+    })
+    p2.then(res => console.log(['resolved-p2', res]))
+      .catch(err => console.log('rejected-p2', err))
+
+
+    var promise99 = new Promise((resolve, reject) => {
+      // resolve(new Error('err'))
+      throw new Error('test')
+    })
+    promise99.then(res => console.log('resolved', res))
+      .catch(err => console.log('rejected', err))
+  </script>
+
+</body>
+
+</html>
